@@ -25,4 +25,14 @@ public class TaskService {
         task.setCompleted(false);
         taskRepo.save(task);
     }
+
+    public void deleteTask(Long id) {
+        taskRepo.deleteById(id);
+    }
+
+    public void toggleTask(Long id) {
+        Task task=taskRepo.findById(id).orElseThrow(()-> new IllegalArgumentException("Ïnvalid task id"));
+        task.setCompleted(!task.isCompleted());
+        taskRepo.save(task);
+    }
 }
